@@ -1,6 +1,6 @@
 [package]
 name = "app"
-version = "0.1.0"
+version = "1.0.0"
 description = "Split any image into cells along an irregular grid you draw yourself."
 authors = ["CiaccoDavide"]
 license = "MIT"

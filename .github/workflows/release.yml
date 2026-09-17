@@ -25,7 +25,7 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Linux system dependencies
         if: matrix.platform == 'ubuntu-22.04'
@@ -35,11 +35,13 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.7.0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: lts/*
+          node-version: 22
           cache: pnpm
 
       - name: Install Rust stable
@@ -60,8 +62,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: 'Irregular Grid Splitter ${{ github.ref_name }}'
+          tagName: v__VERSION__
+          releaseName: 'Irregular Grid Splitter v__VERSION__'
           releaseBody: 'See the assets below to download this version for macOS, Linux, or Windows.'
           releaseDraft: true
           prerelease: false
